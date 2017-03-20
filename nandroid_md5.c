@@ -164,6 +164,7 @@ int nandroid_backup_md5_gen(const char *backup_path) {
     }
     fclose(fd);
     ui_print("MD5 checksums generated\n");
+     ui_print("MD5 checksums generated\n");
 
 out:
     for (i = 0; i < filecount; i++) {
