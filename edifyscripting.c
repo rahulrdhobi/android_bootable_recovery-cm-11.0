@@ -161,6 +161,18 @@ Value* FormatFn(const char* name, State* state, int argc, Expr* argv[]) {
             return StringValue(strdup(""));
         }
     }
+    
+    if (strcmp(path, "/data") == 0 && has_datadata()) {
+        ui_print("Formatting /datadata...\n");
+        if (0 != format_volume("/datadata")) {
+            free(path);
+            return StringValue(strdup(""));
+        }
+        if (0 != format_volume(get_android_secure_path())) {
+            free(path);
+            return StringValue(strdup(""));
+        }
+    }
 
 done:
     return StringValue(strdup(path));
@@ -348,6 +360,13 @@ int edify_main(int argc, char** argv) {
         state.errmsg = NULL;
 
         char* result = Evaluate(&state, root);
+        if (result == NULL) {
+            printf("result was NULL, message is: %s\n",
+                   (state.errmsg == NULL ? "(NULL)" : state.errmsg));
+            free(state.errmsg);
+        } else {
+            printf("result is [%s]\n", result);
+        }
         if (result == NULL) {
             printf("result was NULL, message is: %s\n",
                    (state.errmsg == NULL ? "(NULL)" : state.errmsg));
