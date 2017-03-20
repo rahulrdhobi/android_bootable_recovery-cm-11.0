@@ -36,6 +36,7 @@ run_command() {
 testname() {
   echo
   echo "::: testing $1 :::"
+  echo "::: testing $1 :::"
   testname="$1"
 }
 
@@ -93,6 +94,7 @@ expect_fail otasigned_f4.zip
 # verified against right key but wrong hash algorithm
 expect_fail otasigned.zip -sha256
 expect_fail otasigned_f4.zip -sha256 -f4
+expect_fail otasigned_f4.zip -sha256 -f5
 expect_fail otasigned_sha256.zip
 expect_fail otasigned_f4_sha256.zip -f4
 
