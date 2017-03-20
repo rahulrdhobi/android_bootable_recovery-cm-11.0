@@ -6,6 +6,7 @@
 # TODO: find some way to get this run regularly along with the rest of
 # the tests.
 
+#
 EMULATOR_PORT=5580
 DATA_DIR=$ANDROID_BUILD_TOP/bootable/recovery/testdata
 
