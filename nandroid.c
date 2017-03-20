@@ -82,6 +82,12 @@ static void ensure_directory(const char* dir) {
     __system(tmp);
 }
 
+static void ensure_directory(const char* dir) {
+    char tmp[PATH_MAX];
+    sprintf(tmp, "mkdir -p %s && chmod 777 %s", dir, dir);
+    __system(tmp);
+}
+
 static int print_and_error(const char* message, int ret) {
     ui_reset_progress();
     ui_set_background(BACKGROUND_ICON_ERROR);
